@@ -43,3 +43,33 @@ interface PostProps {
 
 //   // TODO
 // };
+
+export default function Posts ({ post }: PostProps) {
+  return (
+    <div>
+
+
+
+    </div>
+  );
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug } = params;
+  const prismic = getPrismicClient();
+  const response = await prismic.getByUID('post', String(slug), {});
+  console.log('response',response);
+
+  return {
+    props: {
+      post: {}
+    }
+  };
+};
+
+export const getStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking'
+  };
+}
